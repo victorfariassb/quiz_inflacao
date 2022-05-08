@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100;200;400;700;900&family=Libre+Barcode+39+Text&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Kumbh Sans';
+    margin: 0 auto;
+    background-color: white;
+    max-width: 380px;
+}
+
+h1 { 
+    font-family: 'Libre Barcode 39 Text', cursive;
+    font-size: 4rem;
+    padding: 0.5rem 0.5rem 0;
+    line-height: 1.4;
+    letter-spacing: 0.2rem;
+    height: 19rem;
+
+}
+
+.titulo2 {
+    display: none;
+    height: 11rem;
+}
+
+.menu {
+    text-align: center;
+    font-weight: 600;
+}
+
+.menu ol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin: 2rem auto;
+    gap: 1rem;
+}
+
+.menu ol li {
+    font-size: 3rem;
+    padding: 0.2rem;
+    margin: 0 0.4rem;
+}
+
+.produto {
+    display: none;
+    text-align: center;
+    font-size: 1.7rem;
+}
+
+.especificacao {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.caixa {
+    width: 5rem;
+    height: 5rem;
+    background-color: white;
+    border: 0.2rem solid black;
+    margin: 0 auto;
+    font-size: 3.4rem;
+    align-self: center;
+}
+
+.caixa p{
+    margin: 0;
+
+}
+
+.dados {
+    display: none;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.opcoes {
+    margin: 5rem auto 0;
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    padding: 0;
+    
+}
+
+ol {
+    padding: 0;
+}
+
+ol li {
+    display: inline;
+    border: 0.1rem solid black;
+    background-color: white;
+    font-size: 1.4rem;
+    padding: 0.2rem;
+    margin: 0 0.4rem;
+}
+
+ol li:hover {
+    background-color: gray;
+}
+
+.answer {
+    display: none;
+    text-align: center;
+    font-weight: 1000;
+    font-size: 2rem;
+    height: 6rem;
+}
+
+.inactive {
+    pointer-events: none;
+    opacity: 0.2;
+}
+
+
+.proximo {
+    display: none;
+    text-align: center;
+}
+
+.proximo p {
+    display: inline-block;
+    font-size: 1rem;
+    border: 1px solid black;
+    background-color: white;
+    width: 5rem;
+    margin-top: 1.5rem;
+    padding: 0.2rem
+}
+
+.proximo p:hover {
+    background-color: rgb(150, 142, 142);
+}
