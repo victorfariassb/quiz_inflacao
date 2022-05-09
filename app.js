@@ -1,3 +1,5 @@
+// Aqui eu seleciono vários conteúdos do HTML
+
 let result = document.querySelector('.result')
 let resposta = document.querySelector('.answer')
 let opcoes = document.querySelector('.opcoes')
@@ -16,8 +18,11 @@ let contagem = 0
 function checarResposta(event) {
 
     let alternative = event.target
-
+    
+    // Primeiro fiz um if para que ao selecionar o produto que vc vai adivinhar o preço, não mude a cor do fundo como se o usuário tivesse errado
     if (alternative.parentElement.parentElement.classList.contains("menu")) {
+
+        // Aqui foi uma tentativa para personalizar os quiz de acordo com o produto escolhido. Não consegui mudar os preços, por isso não finalizei esta parte
         if (alternative.classList.contains("banana")) {
             especificacao.textContent = produtos.especificacao[0]
             emoji.textContent = produtos.emoji[0]
@@ -34,6 +39,8 @@ function checarResposta(event) {
             especificacao.textContent = produtos.especificacao[3]
             emoji.textContent = produtos.emoji[3]
         }
+
+        // Depois de selecionar o produto, aparecem as perguntas
         titulo.style.display = 'none'
         titulo2.style.display = 'block'
         titulo2.style.margin = '0'
@@ -42,6 +49,7 @@ function checarResposta(event) {
         
     }
 
+    // Caso acerte, aparecem os resultados
     else {
         if (alternative.classList.contains("correct") ) {
             result.textContent = 'ACERTOU'
@@ -54,7 +62,7 @@ function checarResposta(event) {
             button.style.display = 'block'
             canva.style.margin = '1rem'
 
-            
+            // Caso erre, muda a cor e aparece uma msg para tentar novamente
         } else {
             contagem = ++contagem
             alternative.classList.add('inactive')  
@@ -74,6 +82,7 @@ function checarResposta(event) {
 }
 }
 
+// aqui é a base de dados para usar na página
 var produtos = {
     produto: ['Banana', 'Ovo', 'Alface', 'Hambúrguer'], 
     especificacao: ['Um kg de', 'Uma duzia de', 'Um kg de', 'Um simples'],
@@ -86,23 +95,27 @@ var produtos = {
     preco_2022: [3.4, 3.3, 2.5, 23]
 }
 
+// Aqui eu coloquei os emojis no menu inicial
 let itens = document.querySelectorAll('.menu ol li')
 
 for (let i = 0; i < itens.length; i++) {
     itens[i].innerHTML = produtos.emoji[i]
 }
 
+// Aqui é pra checar a resposta
 let alternativas = document.querySelectorAll('li')
 
 for ( let alternativa of alternativas ) {
     alternativa.addEventListener('click', checarResposta)       
                  
 }
+
+// Aqui a página volta para o início
 button.onclick = function() {
-    delete produtos[0];
     document.location.reload();
 }
 
+// dados do gráfico
     const labels = [
 '2012',
 '2014',
@@ -113,7 +126,7 @@ button.onclick = function() {
 ];
 
 
-
+// dados do gráfico
 var data = {
 labels: labels,
 datasets: [{
@@ -124,6 +137,7 @@ datasets: [{
 }]   
 };
 
+// configuracao dos gráficos
 const config = {
 type: 'line',
 data: data,
@@ -155,6 +169,7 @@ options: {
 } 
 };
 
+// plota gráfico
 const myChart = new Chart(
 document.getElementById('myChart'),
 config
