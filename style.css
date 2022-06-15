@@ -88,16 +88,18 @@ button{
 }
 
 ol {
-    padding: 0;
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    gap: 2.2rem;
 }
 
 ol li {
-    display: inline;
     border: 0.1rem solid black;
     background-color: white;
     font-size: 1.4rem;
     padding: 0.2rem;
-    margin: 0 0.4rem;
+    margin: auto 0;
 }
 
 ol li:hover {
