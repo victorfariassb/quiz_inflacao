@@ -9,11 +9,32 @@ let especificacao = document.querySelector('.especificacao')
 let produto = document.querySelector('.produto')
 let dados = document.querySelector('.dados')
 let button = document.querySelector('.proximo')
-let menu = document.querySelector('.menu')
-let emoji = document.querySelector('.caixa')
+let menu = document.getElementById('menu')
+let caixa = document.querySelector('.caixa')
 let canva = document.querySelector('canvas')
 
 let contagem = 0
+
+// aqui é a base de dados para usar na página
+var produtos = {
+    produto: ['Banana', 'Ovo', 'Alface', 'Hambúrguer'], 
+    especificacao: ['Um kg de', 'Uma duzia de', 'Um kg de', 'Um simples'],
+    emoji: ['🍌', '🥚', '🥬', '🍔' ],
+    preco_2012: [2.2, 2.1, 1.3, 14],
+    preco_2014: [2.4, 2.2, 1.5, 15.6],
+    preco_2016: [2.6, 2.3, 1.7, 17.2],
+    preco_2018: [2.8, 2.4, 1.6, 17.9],
+    preco_2020: [3.1, 2.6, 1.9, 21],
+    preco_2022: [3.4, 3.3, 2.5, 23]
+}
+
+// Aqui eu coloquei os emojis no menu inicial
+for (let [index, val] of produtos.produto.entries()) {
+    var listItem = document.createElement('option')
+    listItem.value = produtos.produto[index]
+    listItem.innerHTML = produtos.emoji[index]
+    menu.appendChild(listItem)
+}
 
 function checarResposta(event) {
 
@@ -80,26 +101,6 @@ function checarResposta(event) {
 
 
 }
-}
-
-// aqui é a base de dados para usar na página
-var produtos = {
-    produto: ['Banana', 'Ovo', 'Alface', 'Hambúrguer'], 
-    especificacao: ['Um kg de', 'Uma duzia de', 'Um kg de', 'Um simples'],
-    emoji: ['🍌', '🥚', '🥬', '🍔' ],
-    preco_2012: [2.2, 2.1, 1.3, 14],
-    preco_2014: [2.4, 2.2, 1.5, 15.6],
-    preco_2016: [2.6, 2.3, 1.7, 17.2],
-    preco_2018: [2.8, 2.4, 1.6, 17.9],
-    preco_2020: [3.1, 2.6, 1.9, 21],
-    preco_2022: [3.4, 3.3, 2.5, 23]
-}
-
-// Aqui eu coloquei os emojis no menu inicial
-let itens = document.querySelectorAll('.menu ol li')
-
-for (let i = 0; i < itens.length; i++) {
-    itens[i].innerHTML = produtos.emoji[i]
 }
 
 // Aqui é pra checar a resposta
