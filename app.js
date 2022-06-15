@@ -131,7 +131,6 @@ function escolher () {
     dados.appendChild(variacao)
 
 
-    for (let item of produtos) {
     // dados do gráfico
     var data = {
     labels: labels_ano,
@@ -139,7 +138,7 @@ function escolher () {
         label: value,
         backgroundColor: 'white',
         borderColor: 'white',
-        data: item.precos
+        data: produtos[index_produto].precos
     }]   
     }};
     
@@ -180,10 +179,7 @@ function escolher () {
     document.getElementById('myChart'),
     config
     );
-    
-    
 
-}
 
 
 op_itens.addEventListener('click', checarResposta)
