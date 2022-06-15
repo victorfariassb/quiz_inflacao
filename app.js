@@ -99,7 +99,7 @@ function escolher () {
     
     let num_escolhidos = new Set()
     
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 7; i++) {
         num_escolhidos.add(Math.floor(Math.random() * possibilidades.length) + 1)
         let lastValue = [...num_escolhidos].pop()
         valor_errado = possibilidades[lastValue]
@@ -140,7 +140,7 @@ function escolher () {
         borderColor: 'white',
         data: produtos[index_produto].precos
     }]   
-    }};
+    };
     
     // configuracao dos gráficos
     const config = {
@@ -179,8 +179,8 @@ function escolher () {
     document.getElementById('myChart'),
     config
     );
-
-
+    
+    }
 
 op_itens.addEventListener('click', checarResposta)
 
