@@ -10,97 +10,112 @@ let produto = document.querySelector('.produto')
 let dados = document.querySelector('.dados')
 let button = document.querySelector('.proximo')
 let menu = document.getElementById('menu')
+let anos = document.getElementById('anos')
+let start = document.querySelector('.start')
+let home = document.querySelector('.home')
+
 let caixa = document.querySelector('.caixa')
 let canva = document.querySelector('canvas')
 
 let contagem = 0
 
 // aqui é a base de dados para usar na página
-var produtos = {
-    produto: ['Banana', 'Ovo', 'Alface', 'Hambúrguer'], 
-    especificacao: ['Um kg de', 'Uma duzia de', 'Um kg de', 'Um simples'],
-    emoji: ['🍌', '🥚', '🥬', '🍔' ],
-    preco_2012: [2.2, 2.1, 1.3, 14],
-    preco_2014: [2.4, 2.2, 1.5, 15.6],
-    preco_2016: [2.6, 2.3, 1.7, 17.2],
-    preco_2018: [2.8, 2.4, 1.6, 17.9],
-    preco_2020: [3.1, 2.6, 1.9, 21],
-    preco_2022: [3.4, 3.3, 2.5, 23]
-}
+var produtos = [
+    {
+        name: 'Banana',
+        especificacao: 'Um kg de',
+        emoji: '🍌',
+        precos: [1.2, 2.2, 2.3, 2.4, 2.5, 2.6, 2.9, 3.4]
+    },
+    {
+        name: 'Ovo',
+        especificacao: 'Uma duzia de',
+        emoji: '🥚',
+        precos: [1.2, 2.2, 2.3, 2.4, 2.5, 2.6, 2.9, 3.4]
+    },
+    {
+        name: 'Alface',
+        especificacao: 'Um kg de',
+        emoji: '🥬',
+        precos: [1.2, 2.2, 2.3, 2.4, 2.5, 2.6, 2.9, 3.4]
+    },
+    {
+        name: 'Hambúrguer',
+        especificacao: 'Um simples',
+        emoji: '🍔',
+        precos: [1.2, 2.2, 2.3, 2.4, 2.5, 2.6, 2.9, 3.4]
+    },
+]
 
 // Aqui eu coloquei os emojis no menu inicial
-for (let [index, val] of produtos.produto.entries()) {
-    var listItem = document.createElement('option')
-    listItem.value = produtos.produto[index]
-    listItem.innerHTML = produtos.emoji[index]
+for (let i = 0; i < produtos.length; i++) {
+
+    let listItem = document.createElement('option')
+    listItem.value = produtos[i].name
+    listItem.innerHTML = produtos[i].emoji
     menu.appendChild(listItem)
+    }
+
+for (let i = 2012; i < 2022;  i++) {
+    var ano = document.createElement('option')
+    ano.value = i
+    ano.innerHTML = i
+    anos.appendChild(ano)
+}
+
+start.addEventListener('click', escolher)
+
+function escolher () {
+    let value = menu.options[menu.selectedIndex].value;
+    let index = produtos.map(e => e.name).indexOf(value);   
+
+    caixa.textContent = produtos[index].emoji
+    especificacao.textContent = produtos[index].especificacao
+    
+
+    // Depois de selecionar o produto, aparecem as perguntas
+    titulo.style.display = 'none'
+    titulo2.style.display = 'block'
+    titulo2.style.margin = '0'
+    home.style.display = 'none'
+    produto.style.display = 'block'
+        
+
 }
 
 function checarResposta(event) {
 
     let alternative = event.target
-    
-    // Primeiro fiz um if para que ao selecionar o produto que vc vai adivinhar o preço, não mude a cor do fundo como se o usuário tivesse errado
-    if (alternative.parentElement.parentElement.classList.contains("menu")) {
-
-        // Aqui foi uma tentativa para personalizar os quiz de acordo com o produto escolhido. Não consegui mudar os preços, por isso não finalizei esta parte
-        if (alternative.classList.contains("banana")) {
-            especificacao.textContent = produtos.especificacao[0]
-            emoji.textContent = produtos.emoji[0]
-        }
-        if (alternative.classList.contains("ovo")) {
-            especificacao.textContent = produtos.especificacao[1]
-            emoji.textContent = produtos.emoji[1]
-        }
-        if (alternative.classList.contains("alface")) {
-            especificacao.textContent = produtos.especificacao[2]
-            emoji.textContent = produtos.emoji[2]
-        }
-        if (alternative.classList.contains("hamburguer")) {
-            especificacao.textContent = produtos.especificacao[3]
-            emoji.textContent = produtos.emoji[3]
-        }
-
-        // Depois de selecionar o produto, aparecem as perguntas
-        titulo.style.display = 'none'
-        titulo2.style.display = 'block'
-        titulo2.style.margin = '0'
-        menu.style.display = 'none'
-        produto.style.display = 'block'
-        
-    }
 
     // Caso acerte, aparecem os resultados
-    else {
-        if (alternative.classList.contains("correct") ) {
-            result.textContent = 'ACERTOU'
-            document.body.style.backgroundColor = '#3CCC53'
-            opcoes.style.display = 'none'
-            especificacao.style.display = 'none'
-            dados.style.display = 'block'
-            titulo2.style.height = '8rem'
-            resposta.style.height = '5rem'
-            button.style.display = 'block'
-            canva.style.margin = '1rem'
+    if (alternative.classList.contains("correct") ) {
+        result.textContent = 'ACERTOU'
+        document.body.style.backgroundColor = '#3CCC53'
+        opcoes.style.display = 'none'
+        especificacao.style.display = 'none'
+        dados.style.display = 'block'
+        titulo2.style.height = '8rem'
+        resposta.style.height = '5rem'
+        button.style.display = 'block'
+        canva.style.margin = '1rem'
 
-            // Caso erre, muda a cor e aparece uma msg para tentar novamente
-        } else {
-            contagem = ++contagem
-            alternative.classList.add('inactive')  
-            if (contagem == 1) {
-                result.textContent = 'Errou. Tente novamente'
-                document.body.style.backgroundColor = '#F06C74'}
-            if (contagem == 2) {
-                result.textContent = 'Ainda não. Vamos de novo?'
-                document.body.style.backgroundColor = '#E1000E'
-            }
-
+        // Caso erre, muda a cor e aparece uma msg para tentar novamente
+    } else {
+        contagem = ++contagem
+        alternative.classList.add('inactive')  
+        if (contagem == 1) {
+            result.textContent = 'Errou. Tente novamente'
+            document.body.style.backgroundColor = '#F06C74'}
+        if (contagem == 2) {
+            result.textContent = 'Ainda não. Vamos de novo?'
+            document.body.style.backgroundColor = '#E1000E'
         }
 
-        resposta.style.display = 'block'
+    }
+
+    resposta.style.display = 'block'
 
 
-}
 }
 
 // Aqui é pra checar a resposta

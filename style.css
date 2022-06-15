@@ -26,14 +26,24 @@ h1 {
     height: 11rem;
 }
 
-#menu {
+.home {
     text-align: center;
-    font-weight: 600;
 }
 
-#menu option {
+
+select {
+    font-weight: 600;
     font-size: 1.5rem;
     padding: 1rem;
+    display: inline-block;
+}
+
+button{
+    font-weight: 600;
+    font-size: 1.5rem;
+    padding: 1rem;
+    border: 1px solid black;
+
 }
 
 .produto {
