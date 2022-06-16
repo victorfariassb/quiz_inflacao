@@ -67,6 +67,12 @@ for (let i = 2012; i < 2022;  i++) {
     anos.appendChild(ano)
 }
 
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
 
 // ao escolher o ano e o produto
 start.addEventListener('click', escolher)
@@ -85,37 +91,47 @@ function escolher () {
     // também é observado o valor correto a ser descoberto
     let correto = produtos[index_produto].precos[index_preco]
 
-    // em seguida, esse valor é adicionado às opções (infelizmente, na primeira posição sempre)
-    let op_correta = document.createElement('li')
-    op_correta.className = "correct"
-    op_correta.innerHTML = 'R$ ' + correto
-    op_itens.appendChild(op_correta)
+    // vamos criar uma array para depois preencher as opções de resposta
+    let opcoes_menu = []
 
-    // depois de coletada a opção coreta, eliminamos ela da base
+    // eliminamos a opcao correta da base para não ter erro de repeti-la
     let possibilidades = [...produtos[index_produto].precos]
     delete possibilidades[index_preco]
 
-    // depois, acrescentamos todas as outras opções no programa (minha ideia é colocar sempre 6 opções de forma randômica, mas fica pra depois)
+    // depois, acrescentamos todas as outras opções no programa em um set, de modo que não haja repetição dos dados
     
-    let num_escolhidos = new Set()
-    
-    for (let i = 0; i < 7; i++) {
-        num_escolhidos.add(Math.floor(Math.random() * possibilidades.length) + 1)
-        let lastValue = [...num_escolhidos].pop()
-        valor_errado = possibilidades[lastValue]
-        if (valor_errado != undefined) {
-            op_errada = document.createElement('li')
-            op_errada.innerHTML = 'R$ ' + valor_errado
-            op_itens.appendChild(op_errada)
+    for (let i = 0; i < 8; i++) {
+        let index_escolhido = (Math.floor(Math.random() * possibilidades.length) + 1)
+        let valor_escolhido = possibilidades[index_escolhido]
+        console.log(index_escolhido, valor_escolhido)
+        if (valor_escolhido != undefined) {
+            opcoes_menu.push(valor_escolhido)
+            delete possibilidades[index_escolhido]
+        }
+        else {
+            i-- 
         }
     }
+    // em seguida, acrescentamos a resposta certa na array
+    opcoes_menu.push(correto)
+    
+    shuffle(opcoes_menu)
+
+    for (let item of opcoes_menu) {
+        let opcoes_add = document.createElement('li')
+        opcoes_add.innerHTML = 'R$ ' + item
+        console.log(opcoes_add)
+        op_itens.appendChild(opcoes_add)}
 
     // Depois de selecionar o produto, aparecem as perguntas/
+    resposta.style.display = 'block'
+    result.textContent = 'Escolha um valor'
     titulo.style.display = 'none'
     titulo2.style.display = 'block'
     titulo2.style.margin = '0'
     home.style.display = 'none'
     produto.style.display = 'block'
+    
 
     // aqui, colocamos os dados que vão aparecer no resultado
     let dado_antigo = document.createElement('p')
@@ -127,8 +143,15 @@ function escolher () {
     dados.appendChild(dado_atual)
 
     let variacao = document.createElement('p')
-    variacao.innerHTML = '<b>' + 'variação' +  ':</b> ' + Math.round(produtos[index_produto].precos.slice(-1)[0] * 100 / correto)
-    dados.appendChild(variacao)
+    let variacao_valor =  Math.round((produtos[index_produto].precos.slice(-1)[0] * 100 / correto) - 100)
+    if (variacao_valor > 0) {
+        variacao.innerHTML = '<b>' + 'Cresceu' +  ':</b> ' + variacao_valor + '%'
+        dados.appendChild(variacao)
+    }
+    else {
+        variacao.innerHTML = '<b>' + 'Caiu' +  ':</b> ' + variacao_valor + '%'
+        dados.appendChild(variacao)
+    }
 
 
     // dados do gráfico
@@ -226,8 +249,6 @@ function checarResposta(event) {
         }
 
     }
-
-    resposta.style.display = 'block'
 
 
 }

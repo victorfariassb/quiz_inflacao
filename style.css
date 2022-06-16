@@ -23,7 +23,7 @@ h1 {
 
 .titulo2 {
     display: none;
-    height: 11rem;
+    height: 7rem;
 }
 
 .home {
@@ -89,17 +89,20 @@ button{
 
 ol {
     display: flex;
-    list-style: none;
     flex-wrap: wrap;
     gap: 2.2rem;
+    padding: 0;
 }
 
 ol li {
+    display: block;
     border: 0.1rem solid black;
     background-color: white;
     font-size: 1.4rem;
     padding: 0.2rem;
     margin: auto 0;
+    width: 6rem;
+    height: 2.2rem;
 }
 
 ol li:hover {
