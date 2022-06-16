@@ -21,28 +21,22 @@ let canva = document.querySelector('canvas')
 // aqui é a base de dados para usar na página
 var produtos = [
     {
-        name: 'Banana',
+        name: 'Banana nanica',
         especificacao: 'Um kg de',
         emoji: '🍌',
-        precos: [1.2, 2.2, 2.3, 2.4, 2.5, 2.6, 2.9, 3.4, 3.5, 3., 4]
+        precos: [1.25, 1.3, 1.5, 1.25, 1.25, 1.5, 1.5, 2, 2.33, 2.5, 3.06]
     },
     {
-        name: 'Ovo',
-        especificacao: 'Uma duzia de',
-        emoji: '🥚',
-        precos: [1.2, 4.2, 4.3, 4.4, 4.5, 2.6, 4.9, 4.4, 4.5, 4.6, 4]
-    },
-    {
-        name: 'Alface',
+        name: 'Maçã Fuji',
         especificacao: 'Um kg de',
-        emoji: '🥬',
-        precos: [1.2, 2.5, 2.6, 2, 2.9, 2.8, 2.9, 3.1, 3.3, 3.5, 4]
+        emoji: '🍎',
+        precos: [2.97, 4.16, 4.47, 4.06, 5.9, 3.78, 4.78, 4.98, 4.33, 3.38, 6.01 ]
     },
     {
-        name: 'Hambúrguer',
-        especificacao: 'Um simples',
-        emoji: '🍔',
-        precos: [10.2, 20.2, 20.3, 20.4, 20.5, 20.6, 20.9, 30.4, 30.5, 30, 40]
+        name: 'Limão Tahiti extra',
+        especificacao: 'Um kg de',
+        emoji: '🍋',
+        precos: [0.6, 1.6, 1.25, 1.5, 3, 1.25, 3.25, 1.5, 2.5, 1.5, 1.4]
     },
 ]
 

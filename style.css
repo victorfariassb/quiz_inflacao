@@ -36,6 +36,7 @@ select {
     font-size: 1.5rem;
     padding: 1rem;
     display: inline-block;
+    margin: 0 0.2rem;
 }
 
 button{
@@ -43,6 +44,7 @@ button{
     font-size: 1.5rem;
     padding: 1rem;
     border: 1px solid black;
+    margin-left: 0.2rem;
 
 }
 
@@ -140,4 +142,10 @@ ol li:hover {
 
 .proximo p:hover {
     background-color: rgb(150, 142, 142);
+}
+
+@media (max-width: 900px) {
+    .home h3 {
+        font-size: 1.5rem;
+    }
 }
