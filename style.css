@@ -105,6 +105,7 @@ ol li {
     margin: auto 0;
     width: 6rem;
     height: 2.2rem;
+    cursor:default;
 }
 
 ol li:hover {
